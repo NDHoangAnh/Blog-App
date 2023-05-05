@@ -1,0 +1,16 @@
+nav {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  background-color: var(--navbar-footer-color);
+}
+
+ul {
+  list-style: none;
+  display: flex;
+}
+
+.nav-link {
+  text-transform: uppercase;
+}
