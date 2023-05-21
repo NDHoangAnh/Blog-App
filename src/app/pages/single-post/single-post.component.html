@@ -1,34 +1,39 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-9">
-            <div class="card shadow-effect">
-                <div class="card-body">
-                    <img src="https://images.pexels.com/photos/1595649/pexels-photo-1595649.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" class="card-img-top img-fluid">
-                    <div class="card-body">
-                        <small class="bg-light text-danger text-center">Design</small>
-                        <small class="bg-light text-sucess text-center ml-2">Featured</small>
-                        <small class="bg-light text-info text-center ml-2">Views - 100,256</small>
-                        <small class="bg-light text-warning text-center ml-2">LAST UPDATED - SEP 20,2023</small>
+  <div class="row">
+    <div class="col-md-9">
+      <div class="card shadow-effect">
+        <div class="card-body">
+          <img src="{{ postData.postImg }}" />
+          <div class="card-body">
+            <small class="bg-light text-danger text-center">
+              {{ postData.category.category }}</small
+            >
+            <small
+              class="bg-light text-sucess text-center ml-2"
+              *ngIf="postData.isFeatured"
+              >Featured</small
+            >
+            <small class="bg-light text-info text-center ml-2"
+              >Views - {{ postData.views }}</small
+            >
+            <small class="bg-light text-warning text-center ml-2"
+              >LAST UPDATED - {{ postData.createdAt.toMillis() | date }}</small
+            >
 
-                        <h1 class="mt-3 mb-3"> HOW TO START A BLOG IN 2020 EDITED NEW CATEGORY</h1>
-                        <p>
-                        Atoms of radioactive elements can split. According to Albert Einstein, mass and energy are interchangeable under certain circumstances. When atoms split, the process is called nuclear fission. In this case, a small amount of mass is converted into energy. Thus the energy released cannot do much damage. However, several subatomic particles called neutrons are also emitted during this process. Each neutron will hit a radioactive element releasing more neutrons in the process. This causes a chain reaction and creates a large amount of energy. This energy is converted into heat which expands uncontrollably causing an explosion. Hence, atoms do not literally explode. They generate energy that can cause explosions.
-                        
-                        Yesterday I saw a film titled Macbeth. Its story elements are interesting. The film’s hero, Macbeth, assassinates Duncan and ascends to the throne of Scotland. But he is dissatisfied. He finds himself in a dangerous situation. He executes those he suspects of plotting against him. Eventually, some of the lords revolted and dethroned him and killed him. The message it conveys is that excessive ambition destroys a man. The actor and actress who played Macbeth and Lady Macbeth had exceptional performances, which significantly increased the film is impact.
-
-                        Since March 8, 1990, Women’s Day has been observed by SAARC (South Asian Association for Regional Cooperation) comprising seven countries namely India, Pakistan, Nepal, Bhutan, Bangladesh, Sri Lanka and Maldives. The day is celebrated to highlight the problems of the girl child in these countries. It is very sad that girl children are subjected to extreme neglect and disrespect, especially in underdeveloped countries. The birth of a girl child is seen by parents as a cause of pity. They are deprived of proper nutrition, education, economic opportunities and social status or respect. We must eliminate these prejudices and provide a bright future for girls by educating them
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <app-comment-form></app-comment-form>
-            <app-comment-list></app-comment-list>
+            <h1 class="mt-3 mb-3">{{ postData.title }}</h1>
+            <p [innerHTML]="postData.content"></p>
+          </div>
         </div>
-        <div class="col-md-3">
-            <app-post-card></app-post-card>
-            <app-post-card></app-post-card>
-            <app-post-card></app-post-card>
-        </div>
+      </div>
+
+      <app-comment-form></app-comment-form>
+      <app-comment-list></app-comment-list>
     </div>
+
+    <div class="col-md-3">
+      <div *ngFor="let similarPost of similarPostArray">
+        <app-post-card [postData]="similarPost"></app-post-card>
+      </div>
+    </div>
+  </div>
 </div>

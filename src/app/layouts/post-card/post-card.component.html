@@ -1,23 +1,34 @@
-<div class="card shadow-effect">
+<div
+  class="card shadow-effect"
+  *ngIf="postData"
+  [routerLink]="['/post', postData.id]"
+>
   <img
-    src="https://images.pexels.com/photos/2220279/pexels-photo-2220279.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    src="{{ postData?.data?.postImg }}"
     alt="post-image"
     class="card-img-top"
   />
   <div class="card-body">
-    <small class="bg-light text-danger text-center"> Design </small>
-    <small class="bg-light text-success text-center ml-3"> Featured </small>
-    <small class="bg-light text-info text-center ml-3"> Views - 100,256 </small>
+    <small class="bg-light text-danger text-center">
+      {{ postData?.data?.category.category }}
+    </small>
+    <small
+      class="bg-light text-success text-center ml-3"
+      *ngIf="postData.data.isFeatured"
+    >
+      Featured
+    </small>
+    <small class="bg-light text-info text-center ml-3">
+      Views - {{ postData.data?.views }}
+    </small>
 
-    <h5 class="mt-1">HOW TO START A BLOG IN 2023 EDITED NEW CATEGORY</h5>
+    <h5 class="mt-1">{{ postData?.data?.title }}</h5>
     <p>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim, sequi
-      autem accusamus repellat eaque alias itaque adipisci libero aliquam vero
-      deserunt corporis vitae velit amet maxime culpa aut explicabo provident.
+      {{ postData.data?.excerpt }}
     </p>
 
     <small class="bg-light text-warning text-center ml-3"
-      >LASR UPDATED - MAY 5, 2023</small
+      >LASR UPDATED - {{ postData.data?.createdAt.toMillis() | date }}</small
     >
   </div>
 </div>
