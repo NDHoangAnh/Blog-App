@@ -3,3 +3,11 @@
     padding-top: 0;
     background-color: var(--primary-color);
 }
+.featured-item{
+    margin: 1rem 0;
+}
+@media(max-width: 576px){
+    .featured-section{
+        padding: 0;
+    }
+}
